@@ -1,0 +1,68 @@
+
+1. No token -> 401
+HTTP/1.1 401 UNAUTHORIZED
+Server: Werkzeug/3.1.9 Python/3.12.14
+Date: Mon, 16 Nov 2026 15:12:51 GMT
+Content-Type: application/json
+Content-Length: 36
+X-Content-Type-Options: nosniff
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+Cache-Control: no-store
+Connection: close
+
+{"error":"authentication_required"}
+
+2. SQL injection -> 401
+HTTP/1.1 401 UNAUTHORIZED
+Server: Werkzeug/3.1.9 Python/3.12.14
+Date: Mon, 16 Nov 2026 15:12:51 GMT
+Content-Type: application/json
+Content-Length: 32
+X-Content-Type-Options: nosniff
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+Cache-Control: no-store
+Connection: close
+
+{"error":"invalid_credentials"}
+
+3. Login -> JWT (token omitted from transcript)
+JWT issued successfully
+
+4. XSS is escaped -> 201
+HTTP/1.1 201 CREATED
+Server: Werkzeug/3.1.9 Python/3.12.14
+Date: Mon, 16 Nov 2026 15:12:51 GMT
+Content-Type: application/json
+Content-Length: 56
+X-Content-Type-Options: nosniff
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+Cache-Control: no-store
+Connection: close
+
+{"id":1,"text":"&lt;script&gt;alert(1)&lt;/script&gt;"}
+
+5. Authorized data -> 200
+HTTP/1.1 200 OK
+Server: Werkzeug/3.1.9 Python/3.12.14
+Date: Mon, 16 Nov 2026 15:12:51 GMT
+Content-Type: application/json
+Content-Length: 68
+X-Content-Type-Options: nosniff
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+Cache-Control: no-store
+Connection: close
+
+{"items":[{"id":1,"text":"&lt;script&gt;alert(1)&lt;/script&gt;"}]}
+
+6. Forged token -> 401
+HTTP/1.1 401 UNAUTHORIZED
+Server: Werkzeug/3.1.9 Python/3.12.14
+Date: Mon, 16 Nov 2026 15:12:51 GMT
+Content-Type: application/json
+Content-Length: 26
+X-Content-Type-Options: nosniff
+Content-Security-Policy: default-src 'none'; frame-ancestors 'none'
+Cache-Control: no-store
+Connection: close
+
+{"error":"invalid_token"}
