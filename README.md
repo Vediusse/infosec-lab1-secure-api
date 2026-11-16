@@ -6,10 +6,10 @@
 
 ## Запуск
 
-Требуется Python 3.12. SQLite входит в Python.
+Требуется Python 3.12 или 3.13. SQLite входит в Python.
 
 ```bash
-python3.12 -m venv .venv
+python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements-dev.txt
 export JWT_SECRET=$(python -c 'import secrets; print(secrets.token_hex(32))')
@@ -44,7 +44,7 @@ curl -i http://127.0.0.1:5051/api/data -H 'Authorization: Bearer <access_token>'
 * **A05:2025 Injection.** SQL использует placeholders `?` с отдельными параметрами. HTML экранируется через `html.escape` при выдаче, ответы имеют JSON content type, `nosniff` и CSP. При создании полноценного UI необходим безопасный вывод в соответствующий HTML-контекст.
 * **A07:2025 Authentication Failures.** scrypt с индивидуальной солью; JWT HS256 с обязательными exp/iat/sub/iss/aud и списком разрешённых алгоритмов. Секрет минимум 32 символа из окружения. Токен действует 15 минут.
 * **A02:2025 Security Misconfiguration.** Debug выключен, запуск по умолчанию на loopback, секрет не хранится в git, ограничено тело запроса.
-* **A03:2025 Software Supply Chain Failures.** Версии runtime-зависимостей зафиксированы; pip-audit и OWASP Dependency-Check проверяют известные уязвимости. Это частичное покрытие категории, а не защита всей цепочки поставок.
+* **A03:2025 Software Supply Chain Failures.** GitHub Actions зафиксированы полными commit SHA, версии runtime-зависимостей зафиксированы; pip-audit и OWASP Dependency-Check проверяют известные уязвимости. Это частичное покрытие категории, а не защита всей цепочки поставок.
 * **A09:2025 Security Logging and Alerting Failures.** События входа и отклонения JWT логируются без паролей и токенов. Централизованный сбор и оповещения не реализованы.
 * **A10:2025 Mishandling of Exceptional Conditions.** Некорректный ввод получает контролируемый JSON-ответ. Неожиданные ошибки скрыты от клиента, детали сохраняются в серверном журнале.
 
@@ -79,3 +79,19 @@ GitHub Actions (`.github/workflows/ci.yml`) запускается при push, 
 В запуске #3 Dependency-Check остановил CI: CVE-2025-45770, CVSS 7.0. Проверка отчёта показала ошибочную привязку PyJWT 2.15.1 к CPE `jwt_project:jwt`, который относится к PHP-библиотеке lcobucci/jwt. Это другой продукт: [NVD](https://nvd.nist.gov/vuln/detail/CVE-2025-45770), [OSV](https://osv.dev/vulnerability/CVE-2025-45770).
 
 В `dependency-check-suppressions.xml` добавлено исключение только для этой CVE и точного PURL `pkg:pypi/pyjwt@2.15.1`, до 01.02.2027. Это исправление ложного срабатывания, не устранение уязвимости в коде. Остальные проверки продолжают блокировать CI при CVSS ≥ 7. Исходный отчёт сохранён в `docs/owasp-before/`.
+
+## Выполненный CI
+
+[Успешный запуск #4](https://github.com/Vediusse/infosec-lab1-secure-api/actions/runs/43895460553) — тесты, Bandit, pip-audit и OWASP Dependency-Check прошли.
+
+![GitHub Actions](docs/screenshots/ci-summary.png)
+
+![Bandit в Actions](docs/screenshots/ci-sast.png)
+
+![OWASP до разбора](docs/screenshots/owasp-before.png)
+
+![OWASP после разбора](docs/screenshots/owasp-after.png)
+
+Локальные подтверждения: [curl](docs/curl-demo.txt), [pytest](docs/tests.txt), [Bandit JSON](docs/bandit.json), [pip-audit JSON](docs/pip-audit.json). Снимки локальных журналов — просмотр сохранённого вывода в Chrome, а снимки CI — страницы GitHub Actions и HTML-artifacts этого запуска.
+
+Рабочая папка: `/Users/rublev/DEV/infosec_lab1`.
