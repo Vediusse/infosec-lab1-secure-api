@@ -55,7 +55,12 @@ jobs:
         run: |
           mkdir -p reports/owasp
           args=()
-          if [[ -n "$NVD_API_KEY" ]]; then args+=(--nvdApiKey "$NVD_API_KEY"); fi
+          if [[ -n "$NVD_API_KEY" ]]; then
+            args+=(--nvdApiKey "$NVD_API_KEY")
+          else
+            unset NVD_API_KEY
+            args+=(--nvdDatafeed 'https://nvd.nist.gov/feeds/json/cve/2.0/nvdcve-2.0-{0}.json.gz')
+          fi
           /tmp/dependency-check/bin/dependency-check.sh \
             --project secure-notes-api --scan requirements.txt \
             --enableExperimental --disableOssIndex \

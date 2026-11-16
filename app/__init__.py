@@ -14,6 +14,8 @@ from werkzeug.exceptions import HTTPException
 from werkzeug.security import check_password_hash, generate_password_hash
 
 
+BEARER_SCHEME = 'Bearer'
+
 def create_app(config=None):
     app = Flask(__name__)
     app.config.update(SECRET_KEY=os.environ.get('JWT_SECRET'),
@@ -123,7 +125,7 @@ def create_app(config=None):
                             'iss': 'secure-notes', 'aud': 'secure-notes-api'},
                            app.config['SECRET_KEY'], algorithm='HS256')
         app.logger.info('login_succeeded')
-        return jsonify({'access_token': token, 'token_type': 'Bearer', 'expires_in': 900})
+        return jsonify({'access_token': token, 'token_type': BEARER_SCHEME, 'expires_in': 900})
 
     @app.get('/api/data')
     @protected
