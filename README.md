@@ -61,9 +61,9 @@ bash scripts/verify.sh
 GitHub Actions (`.github/workflows/ci.yml`) запускается при push, pull_request и вручную. Два jobs:
 
 1. Pytest, Bandit SAST, pip-audit. Любая находка Bandit или pip-audit завершает проверку ошибкой.
-2. OWASP Dependency-Check 13.0.0, experimental Pip Analyzer, HTML/JSON, порог CVSS ≥ 7. OSS Index выключен, так как требует отдельной учётной записи; NVD остаётся включённым. Необязательный repository secret `NVD_API_KEY` ускоряет загрузку NVD. Ошибки обновления базы не подавляются. Python-анализатор экспериментальный; pip-audit дополняет его сопоставлением пакетов PyPI.
+2. OWASP Dependency-Check 13.0.0, experimental Pip Analyzer, HTML/JSON, порог CVSS ≥ 7. OSS Index выключен, так как требует отдельной учётной записи; NVD остаётся включённым. Без API-ключа загружаются официальные NVD JSON 2.0 feeds; repository secret `NVD_API_KEY` позволяет использовать API. Ошибки обновления базы не подавляются. Python-анализатор экспериментальный; pip-audit дополняет его сопоставлением пакетов PyPI.
 
-Отчёты доступны как artifacts каждого запуска. Скриншоты и ссылки на выполненные проверки добавляются после запуска.
+Отчёты доступны как artifacts каждого запуска. Скриншоты и ссылки на выполненные проверки приведены ниже.
 
 ## Источники
 
@@ -73,3 +73,9 @@ GitHub Actions (`.github/workflows/ci.yml`) запускается при push, 
 * https://pyjwt.readthedocs.io/en/stable/usage.html
 * https://dependency-check.github.io/DependencyCheck/analyzers/pip.html
 * https://docs.github.com/en/actions/tutorials/build-and-test-code/python
+
+## Разбор находки OWASP
+
+В запуске #3 Dependency-Check остановил CI: CVE-2025-45770, CVSS 7.0. Проверка отчёта показала ошибочную привязку PyJWT 2.15.1 к CPE `jwt_project:jwt`, который относится к PHP-библиотеке lcobucci/jwt. Это другой продукт: [NVD](https://nvd.nist.gov/vuln/detail/CVE-2025-45770), [OSV](https://osv.dev/vulnerability/CVE-2025-45770).
+
+В `dependency-check-suppressions.xml` добавлено исключение только для этой CVE и точного PURL `pkg:pypi/pyjwt@2.15.1`, до 01.02.2027. Это исправление ложного срабатывания, не устранение уязвимости в коде. Остальные проверки продолжают блокировать CI при CVSS ≥ 7. Исходный отчёт сохранён в `docs/owasp-before/`.

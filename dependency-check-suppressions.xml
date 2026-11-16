@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.4.xsd">
+  <suppress until="2027-02-01Z">
+    <notes><![CDATA[
+      Reviewed 2026-11-16. False product mapping: PyPI PyJWT 2.15.1
+      was matched to jwt_project:jwt (lcobucci/jwt, PHP).
+      CVE-2025-45770 concerns lcobucci/jwt <= 5.4.3, not PyJWT.
+      Evidence: https://nvd.nist.gov/vuln/detail/CVE-2025-45770
+      https://osv.dev/vulnerability/CVE-2025-45770
+      Scope is one CVE and one exact PyPI package version.
+      All other vulnerability checks and CVSS >= 7 blocking remain enabled.
+    ]]></notes>
+    <packageUrl>pkg:pypi/pyjwt@2.15.1</packageUrl>
+    <cve>CVE-2025-45770</cve>
+  </suppress>
+</suppressions>

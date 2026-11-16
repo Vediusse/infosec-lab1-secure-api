@@ -64,6 +64,7 @@ jobs:
           /tmp/dependency-check/bin/dependency-check.sh \
             --project secure-notes-api --scan requirements.txt \
             --enableExperimental --disableOssIndex \
+            --suppression dependency-check-suppressions.xml \
             --data ~/.dependency-check/data --out reports/owasp \
             --format HTML --format JSON --failOnCVSS 7 "${args[@]}"
       - uses: actions/upload-artifact@v4

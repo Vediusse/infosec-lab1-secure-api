@@ -1,8 +1,8 @@
 
 1. No token -> 401
 HTTP/1.1 401 UNAUTHORIZED
-Server: Werkzeug/3.1.9 Python/3.12.14
-Date: Mon, 16 Nov 2026 15:12:51 GMT
+Server: Werkzeug/3.1.9 Python/3.13.9
+Date: Mon, 16 Nov 2026 15:19:47 GMT
 Content-Type: application/json
 Content-Length: 36
 X-Content-Type-Options: nosniff
@@ -14,8 +14,8 @@ Connection: close
 
 2. SQL injection -> 401
 HTTP/1.1 401 UNAUTHORIZED
-Server: Werkzeug/3.1.9 Python/3.12.14
-Date: Mon, 16 Nov 2026 15:12:51 GMT
+Server: Werkzeug/3.1.9 Python/3.13.9
+Date: Mon, 16 Nov 2026 15:19:47 GMT
 Content-Type: application/json
 Content-Length: 32
 X-Content-Type-Options: nosniff
@@ -30,8 +30,8 @@ JWT issued successfully
 
 4. XSS is escaped -> 201
 HTTP/1.1 201 CREATED
-Server: Werkzeug/3.1.9 Python/3.12.14
-Date: Mon, 16 Nov 2026 15:12:51 GMT
+Server: Werkzeug/3.1.9 Python/3.13.9
+Date: Mon, 16 Nov 2026 15:19:47 GMT
 Content-Type: application/json
 Content-Length: 56
 X-Content-Type-Options: nosniff
@@ -43,8 +43,8 @@ Connection: close
 
 5. Authorized data -> 200
 HTTP/1.1 200 OK
-Server: Werkzeug/3.1.9 Python/3.12.14
-Date: Mon, 16 Nov 2026 15:12:51 GMT
+Server: Werkzeug/3.1.9 Python/3.13.9
+Date: Mon, 16 Nov 2026 15:19:47 GMT
 Content-Type: application/json
 Content-Length: 68
 X-Content-Type-Options: nosniff
@@ -56,8 +56,8 @@ Connection: close
 
 6. Forged token -> 401
 HTTP/1.1 401 UNAUTHORIZED
-Server: Werkzeug/3.1.9 Python/3.12.14
-Date: Mon, 16 Nov 2026 15:12:51 GMT
+Server: Werkzeug/3.1.9 Python/3.13.9
+Date: Mon, 16 Nov 2026 15:19:47 GMT
 Content-Type: application/json
 Content-Length: 26
 X-Content-Type-Options: nosniff

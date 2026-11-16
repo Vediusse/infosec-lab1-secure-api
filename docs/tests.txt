@@ -1,5 +1,5 @@
 ============================= test session starts ==============================
-platform darwin -- Python 3.12.14, pytest-9.2.0, pluggy-1.7.0 -- /Users/rublev/DEV/infosec_lab1/.venv/bin/python
+platform darwin -- Python 3.13.9, pytest-9.2.0, pluggy-1.7.0 -- /Users/rublev/DEV/infosec_lab1/.venv/bin/python
 cachedir: .pytest_cache
 rootdir: /Users/rublev/DEV/infosec_lab1
 plugins: platformdirs-4.14.5
@@ -21,4 +21,4 @@ tests/test_security.py::test_validation_and_headers PASSED               [ 92%]
 tests/test_security.py::test_secret_required PASSED                      [100%]
 
 --- generated xml file: /Users/rublev/DEV/infosec_lab1/docs/test-results.xml ---
-============================== 14 passed in 3.39s ==============================
+============================== 14 passed in 5.03s ==============================
