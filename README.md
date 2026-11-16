@@ -92,6 +92,6 @@ GitHub Actions (`.github/workflows/ci.yml`) запускается при push, 
 
 ![OWASP после разбора](docs/screenshots/owasp-after.png)
 
-Локальные подтверждения: [curl](docs/curl-demo.txt), [pytest](docs/tests.txt), [Bandit JSON](docs/bandit.json), [pip-audit JSON](docs/pip-audit.json). Снимки локальных журналов — просмотр сохранённого вывода в Chrome, а снимки CI — страницы GitHub Actions и HTML-artifacts успешных запусков #4 и #5.
+Локальные подтверждения: [curl](docs/curl-demo.txt), [pytest](docs/tests.txt), [Bandit JSON](docs/bandit.json), [pip-audit JSON](docs/pip-audit.json). Иллюстрации показывают ответы API, список тестов, успешную проверку GitHub Actions и сводки сохранённых отчётов сканеров. На снимках оставлены результаты без курсора и служебных строк. Полные исходные отчёты находятся в docs/.
 
 Рабочая папка: `/Users/rublev/DEV/infosec_lab1`.
