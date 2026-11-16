@@ -82,7 +82,7 @@ GitHub Actions (`.github/workflows/ci.yml`) запускается при push, 
 
 ## Выполненный CI
 
-[Успешный запуск #4](https://github.com/Vediusse/infosec-lab1-secure-api/actions/runs/43895460553) — тесты, Bandit, pip-audit и OWASP Dependency-Check прошли.
+[Успешный запуск #5](https://github.com/Vediusse/infosec-lab1-secure-api/actions/runs/43896703469) — тесты, Bandit, pip-audit и OWASP Dependency-Check прошли.
 
 ![GitHub Actions](docs/screenshots/ci-summary.png)
 
@@ -92,6 +92,6 @@ GitHub Actions (`.github/workflows/ci.yml`) запускается при push, 
 
 ![OWASP после разбора](docs/screenshots/owasp-after.png)
 
-Локальные подтверждения: [curl](docs/curl-demo.txt), [pytest](docs/tests.txt), [Bandit JSON](docs/bandit.json), [pip-audit JSON](docs/pip-audit.json). Снимки локальных журналов — просмотр сохранённого вывода в Chrome, а снимки CI — страницы GitHub Actions и HTML-artifacts этого запуска.
+Локальные подтверждения: [curl](docs/curl-demo.txt), [pytest](docs/tests.txt), [Bandit JSON](docs/bandit.json), [pip-audit JSON](docs/pip-audit.json). Снимки локальных журналов — просмотр сохранённого вывода в Chrome, а снимки CI — страницы GitHub Actions и HTML-artifacts успешных запусков #4 и #5.
 
 Рабочая папка: `/Users/rublev/DEV/infosec_lab1`.
