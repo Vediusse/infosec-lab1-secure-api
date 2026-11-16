@@ -1,0 +1,24 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.2.0, pluggy-1.7.0 -- /Users/rublev/Documents/ChatGPT/infobes/tmp/lab1/runtime/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/rublev/Documents/ChatGPT/infobes/output/lab1/project
+plugins: platformdirs-4.14.5
+collecting ... collected 14 items
+
+tests/test_security.py::test_login_and_data PASSED                       [  7%]
+tests/test_security.py::test_anonymous_denied PASSED                     [ 14%]
+tests/test_security.py::test_sqli_does_not_bypass_login PASSED           [ 21%]
+tests/test_security.py::test_xss_is_escaped PASSED                       [ 28%]
+tests/test_security.py::test_users_are_isolated PASSED                   [ 35%]
+tests/test_security.py::test_invalid_tokens[expired] PASSED              [ 42%]
+tests/test_security.py::test_invalid_tokens[wrong_signature] PASSED      [ 50%]
+tests/test_security.py::test_invalid_tokens[wrong_audience] PASSED       [ 57%]
+tests/test_security.py::test_invalid_tokens[missing_exp] PASSED          [ 64%]
+tests/test_security.py::test_invalid_tokens[none] PASSED                 [ 71%]
+tests/test_security.py::test_password_hash PASSED                        [ 78%]
+tests/test_security.py::test_rate_limit PASSED                           [ 85%]
+tests/test_security.py::test_validation_and_headers PASSED               [ 92%]
+tests/test_security.py::test_secret_required PASSED                      [100%]
+
+- generated xml file: /Users/rublev/Documents/ChatGPT/infobes/output/lab1/project/docs/test-results.xml -
+============================== 14 passed in 3.49s ==============================
